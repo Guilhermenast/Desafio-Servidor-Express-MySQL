@@ -1,0 +1,23 @@
+{
+  "name": "desafio-servidor-express-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guilhermenast/Desafio-Servidor-Express-MySQL.git"
+  },
+  "author": "Guilherme Nascimento",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Guilhermenast/Desafio-Servidor-Express-MySQL/issues"
+  },
+  "homepage": "https://github.com/Guilhermenast/Desafio-Servidor-Express-MySQL#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
