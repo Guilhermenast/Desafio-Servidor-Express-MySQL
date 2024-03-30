@@ -1,0 +1,1 @@
+CREATE TABLE `guilherme`.`produtos` (`Id` INT(10) NOT NULL AUTO_INCREMENT , `Nome` VARCHAR(255) NOT NULL , `Descrição` VARCHAR(255) NOT NULL , `Preço` DECIMAL(65) NOT NULL , `Data_atualizado` DATETIME(6) NOT NULL , PRIMARY KEY (`Id`(10))) ENGINE = InnoDB;
