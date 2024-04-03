@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const mysql = require('mysql2/promise');
 
-/* GET home page. */
+/* GET página inicial */
 router.get('/', function (req, res, next) {
  mysql.createConnection({host: 'localhost',user: 'Guilherme',password: '@TUtuCo2024JX',
  database: 'guilherme',port: 3306
