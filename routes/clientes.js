@@ -2,22 +2,16 @@ const express = require("express");
 const router = express.Router();
 
 const clienteController = require('../controllers/clienteController');
-const nomeMiddleware = require('../middlewares/nomeMiddleware');
-const sobrenomeMiddleware = require('../middlewares/sobrenomeMiddleware');
-const idadeMiddleware = require('../middlewares/idadeMiddleware');
+const clientesMiddleware = require('../middlewares/clientesMiddleware');
 
 /* GET clientes */
 router.get('/', clienteController.findAll);
 
 /* POST clientes */
-router.post('/', nomeMiddleware.validaNome,
- sobrenomeMiddleware.validateFamilyName,
- idadeMiddleware.validateAge,
- clienteController.save
-);
+router.post('/', clientesMiddleware.validarCamposCliente, clienteController.save);
 
 /* PUT clientes */
-router.put('/', clienteController.update);
+router.put('/:id', clienteController.update);
 
 /* DELETE clientes */
 router.delete('/:id', clienteController.remove);
