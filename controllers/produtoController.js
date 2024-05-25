@@ -1,34 +1,57 @@
-const produtoService = require('../services/produtosService');
+const produtoService = require("../services/produtosService");
 
-const findAll = async (request, response) =>{
+const findAll = async (req, res) => {
+  try {
     const produtos = await produtoService.findAll();
-    return response.status(200).json(produtos);
+    res.status(200).json(produtos);
+  } catch (error) {
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
-const save = async (request, response) => {
-    const result = await produtoService.save(request.body);
-    return result ?
-        response.status(200).json() : response.status(400).json({ "[ERROR/SERVER]" : "Falha ao salvar produto" });
+const save = async (req, res) => {
+  try {
+    const result = await produtoService.save(req.body);
+    if (result) {
+      res.status(200).json({ message: "Produto salvo com sucesso" });
+    } else {
+      res.status(400).json({ error: "Falha ao salvar produto" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
-const update = async (request, response) => {
-    const result = await produtoService.update(request.body);
-    return result ?
-    response.status(200).json() :
-    response.status(400).json({ "[ERROR/SERVER]": "Falha ao atualizar produto"});
+const update = async (req, res) => {
+  try {
+    const result = await produtoService.update(req.body);
+    if (result) {
+      res.status(200).json({ message: "Produto atualizado com sucesso" });
+    } else {
+      res.status(400).json({ error: "Falha ao atualizar produto" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
-const remove = async (request, response) => {
-    const { id } = request.params;
+const remove = async (req, res) => {
+  const { id } = req.params;
+  try {
     const result = await produtoService.remove(id);
-    return result ?
-    response. status(200).json() :
-    response.status(400).json({ "[ERROR/SERVER]": "Falha ao remover produto"});
+    if (result) {
+      res.status(200).json({ message: "Produto removido com sucesso" });
+    } else {
+      res.status(400).json({ error: "Falha ao remover produto" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
 module.exports = {
-    findAll,
-    save,
-    remove,
-    update
+  findAll,
+  save,
+  remove,
+  update,
 };

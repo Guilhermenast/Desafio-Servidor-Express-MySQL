@@ -16,4 +16,4 @@ router.put('/:id', clienteController.update);
 /* DELETE clientes */
 router.delete('/:id', clienteController.remove);
 
-module.exports = router;
+module.exports = router;

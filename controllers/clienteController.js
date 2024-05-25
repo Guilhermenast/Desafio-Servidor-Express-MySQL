@@ -1,34 +1,51 @@
-const clienteService = require('../services/clientesService');
+const clienteService = require("../services/clientesService");
 
-const findAll = async (request, response) =>{
+const findAll = async (req, res) => {
+  try {
     const clientes = await clienteService.findAll();
-    return response.status(200).json(clientes);
+    return res.status(200).json(clientes);
+  } catch (error) {
+    return res.status(500).json({ error: "Falha ao buscar clientes" });
+  }
 };
 
-const save = async (request, response) => {
-    const result = await clienteService.save(request.body);
-    return result ?
-        response.status(200).json() : response.status(400).json({ "[ERROR/SERVER]" : "Falha ao salvar cliente" });
+const save = async (req, res) => {
+  try {
+    const result = await clienteService.save(req.body);
+    return result
+      ? res.status(200).json({ message: "Cliente salvo com sucesso" })
+      : res.status(400).json({ error: "Falha ao salvar cliente" });
+  } catch (error) {
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
-const update = async (request, response) => {
-    const result = await clienteService.update(request.body);
-    return result ?
-    response.status(200).json() :
-    response.status(400).json({ "[ERROR/SERVER]": "Falha ao atualizar cliente"});
+const update = async (req, res) => {
+  try {
+    const result = await clienteService.update(req.body);
+    return result
+      ? res.status(200).json({ message: "Cliente atualizado com sucesso" })
+      : res.status(400).json({ error: "Falha ao atualizar cliente" });
+  } catch (error) {
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
-const remove = async (request, response) => {
-    const { id } = request.params;
+const remove = async (req, res) => {
+  const { id } = req.params;
+  try {
     const result = await clienteService.remove(id);
-    return result ?
-    response. status(200).json() :
-    response.status(400).json({ "[ERROR/SERVER]": "Falha ao remover cliente"});
+    return result
+      ? res.status(200).json({ message: "Cliente removido com sucesso" })
+      : res.status(400).json({ error: "Falha ao remover cliente" });
+  } catch (error) {
+    return res.status(500).json({ error: "Erro interno do servidor" });
+  }
 };
 
 module.exports = {
-    findAll,
-    save,
-    remove,
-    update
+  findAll,
+  save,
+  update,
+  remove,
 };

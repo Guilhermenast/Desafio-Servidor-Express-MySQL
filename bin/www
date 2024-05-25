@@ -6,7 +6,7 @@ var debug = require("debug")("desafio-servidor-express-mysql:server");
 var http = require("http");
 
 //Obtém a porta do ambiente e armazena no Express.
-var port = normalizePort(process.env.PORT || "3000");
+var port = normalizePort(process.env.PORT || "3001");
 app.set("port", port);
 
 //Cria o servidor HTTP.
